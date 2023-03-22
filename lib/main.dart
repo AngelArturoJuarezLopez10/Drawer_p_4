@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: _title,
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.teal,
       ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
@@ -26,15 +26,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: const Color(0xff764abc),
         title: Text('Drawer Juarez'),
       ),
       drawer: Drawer(
+        width: MediaQuery.of(context).size.width * 0.6,
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
@@ -92,7 +95,24 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: Center(),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _key.currentState!.openDrawer(); //<-- SEE HERE
+              },
+              child: const Text(
+                'Abrir drawer',
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
