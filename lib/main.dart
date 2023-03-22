@@ -4,7 +4,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  static const String _title = 'Drawer Juarez';
+  static const String _title = 'Juarez Drawer';
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -39,11 +39,21 @@ class _MyHomePageState extends State<MyHomePage> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.green,
+            const UserAccountsDrawerHeader(
+              decoration: BoxDecoration(color: const Color(0xff764abc)),
+              accountName: Text(
+                "Pinkesh Darji",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              child: Text('Encabezado'),
+              accountEmail: Text(
+                "pinkesh.earth@gmail.com",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              currentAccountPicture: FlutterLogo(),
             ),
             ListTile(
               leading: Icon(
@@ -63,14 +73,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pop(context);
               },
             ),
-            ListTile(
-              leading: Icon(
-                Icons.add_ic_call_sharp,
+            AboutListTile(
+              // <-- SEE HERE
+              icon: Icon(
+                Icons.info,
               ),
-              title: const Text('Pagina 3'),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              child: Text('Mas informacion'),
+              applicationIcon: Icon(
+                Icons.local_play,
+              ),
+              applicationName: 'Mi Primer app',
+              applicationVersion: '1.0.25',
+              applicationLegalese: '© 2023 Company',
+              aboutBoxChildren: [
+                ///Content goes here...
+              ],
             ),
           ],
         ),
